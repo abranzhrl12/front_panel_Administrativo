@@ -14,6 +14,7 @@ export default defineConfig({
       '@styles': resolve(__dirname,'src/shared/styles'),
       '@providers': resolve(__dirname,'src/app/providers'),
       '@icons': resolve(__dirname,'src/shared/assets/icons'),
+      '@features': resolve(__dirname,'src/app/features'),
     },
   },
 })

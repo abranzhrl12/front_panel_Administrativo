@@ -52,3 +52,6 @@ export default tseslint.config({
   },
 })
 ```
+
+bun add graphql graphql-request
+
