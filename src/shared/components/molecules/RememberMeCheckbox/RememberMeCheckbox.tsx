@@ -1,6 +1,6 @@
 // src/shared/components/molecules/RememberMeCheckbox/RememberMeCheckbox.tsx
 import React from "react";
-import { Checkbox } from "../../atoms/Checkbox/Checkbox"; // <--- Ajusta la ruta a tu Checkbox
+import { Checkbox } from "@shared/components/atoms"; // <--- Ajusta la ruta a tu Checkbox
 
 interface RememberMeCheckboxProps {
   checked: boolean;

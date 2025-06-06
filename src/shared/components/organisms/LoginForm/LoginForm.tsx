@@ -1,7 +1,7 @@
 // src/features/auth/components/organisms/Login/LoginForm.tsx
 import React from "react";
 import { FormField } from "@shared/components/molecules/FormField"; // Ruta a tu FormField.tsx
-import { RememberMeCheckbox } from "@shared/components/molecules/RememberMeCheckbox/RememberMeCheckbox"; // Ruta a tu RememberMeCheckbox.tsx
+import { RememberMeCheckbox } from "@shared/components/molecules"; // Ruta a tu RememberMeCheckbox.tsx
 import { ButtonBasic } from "@shared/components/atoms/Buttons"; // Ruta a tu ButtonBasic.tsx
 import type { FormErrors } from "@shared/utils/FormErrors"; // Ruta a tu archivo de utilidades de validación
 import type { LoginCredentials } from "@features/auth/services/auth.service"; // Ruta a tu tipo LoginCredentials
