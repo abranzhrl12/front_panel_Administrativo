@@ -53,5 +53,10 @@ export default tseslint.config({
 })
 ```
 
-bun add graphql graphql-request
-
+<!-- bun add graphql graphql-request
+bun add zod
+bun add @apollo/client graphql
+bun add react-router-dom
+bun add @tanstack/react-query
+bun add zustand
+bun add @tanstack/react-query-devtools -->

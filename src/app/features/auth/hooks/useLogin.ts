@@ -1,7 +1,7 @@
-import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import { login, type LoginCredentials } from '../services/auth.service';
-import { useAuthStore } from '../store/auth.store';
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { login, type LoginCredentials } from "../services/auth.service";
+import { useAuthStore } from "../store/auth.store";
 
 export const useLogin = () => {
   // 1. Obtenemos la función para guardar los datos del usuario de nuestro store.
@@ -20,15 +20,15 @@ export const useLogin = () => {
     onSuccess: (data) => {
       // Guardamos el token y los datos del usuario en nuestro store global.
       setAuth(data);
-      
+
       // Llevamos al usuario a una página protegida, como el dashboard.
       // (Asegúrate de tener una ruta '/dashboard' en tu router).
-      navigate('/home'); 
+      navigate("/home");
     },
 
     // `onError` se ejecuta si la `mutationFn` falla (ej: contraseña incorrecta).
     onError: (error) => {
-      console.error('Login fallido:', error);
+      console.error("Login fallido:", error);
       // Aquí podrías mostrar una notificación de error al usuario.
     },
   });
