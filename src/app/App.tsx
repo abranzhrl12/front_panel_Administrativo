@@ -1,13 +1,15 @@
-import { Sidebar } from "@shared/components/organisms"
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "./router/AppRoutes";
+import { QueryProvider } from "@shared/providers/QueryProvider";
 
-
-function App() {
-
+export const App = () => {
   return (
     <>
-      <Sidebar />
+      <BrowserRouter>
+        <QueryProvider>
+          <AppRoutes />
+        </QueryProvider>
+      </BrowserRouter>
     </>
-  )
-}
-
-export default App
+  );
+};
