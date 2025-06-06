@@ -1,38 +1,41 @@
+// src/features/auth/store/auth.store.ts
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware'; // Para guardar en localStorage
+import { persist, createJSONStorage } from 'zustand/middleware'; // <-- Importa createJSONStorage
 
-// 1. Definimos la forma de los datos del usuario que vienen de la API.
 interface User {
   role: string;
   isActive: boolean;
 }
 
-// 2. Definimos la estructura completa de nuestro store de autenticación.
 interface AuthState {
   accessToken: string | null;
   user: User | null;
-  // Esta es una "acción": una función para actualizar el estado.
+  lastActivityTimestamp: number | null;
+  logoutReason: string | null;
+
   setAuth: (data: { accessToken: string; user: User }) => void;
-  // Otra acción para limpiar el estado al hacer logout.
-  logout: () => void;
+  logout: (reason?: string) => void;
+  setLastActivityTimestamp: (timestamp: number) => void;
+  setLogoutReason: (reason: string | null) => void;
 }
 
-// 3. Creamos el hook del store usando Zustand.
 export const useAuthStore = create<AuthState>()(
-  // `persist` es un middleware que guarda automáticamente el estado en el localStorage
-  // del navegador. Si el usuario recarga la página, su sesión seguirá activa.
   persist(
     (set) => ({
-      // Estado inicial
       accessToken: null,
       user: null,
+      lastActivityTimestamp: null,
+      logoutReason: null,
 
-      // Implementación de las acciones
-      setAuth: ({ accessToken, user }) => set({ accessToken, user }),
-      logout: () => set({ accessToken: null, user: null }),
+      setAuth: ({ accessToken, user }) => set({ accessToken, user, lastActivityTimestamp: Date.now(), logoutReason: null }),
+      logout: (reason?: string) => set({ accessToken: null, user: null, lastActivityTimestamp: null, logoutReason: reason || null }),
+      setLastActivityTimestamp: (timestamp: number) => set({ lastActivityTimestamp: timestamp }),
+      setLogoutReason: (reason: string | null) => set({ logoutReason: reason }),
     }),
     {
-      name: 'auth-storage', // Nombre de la clave que se usará en localStorage
+      name: 'auth-storage',
+      // ¡CORRECCIÓN CLAVE AQUÍ! Usa createJSONStorage(localStorage)
+      storage: createJSONStorage(() => localStorage), // <--- Esto resuelve el error de tipo
     }
   )
 );
